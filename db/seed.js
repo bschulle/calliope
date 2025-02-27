@@ -1,4 +1,7 @@
+require(`dotenv`).config();
+
 const client = require(`./client.js`);
+
 const { createRestaurant } = require("./restaurants.js");
 const { createReview } = require("./reviews.js");
 const { createUser }= require(`./users.js`);
