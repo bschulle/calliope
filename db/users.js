@@ -16,6 +16,25 @@ const createUser = async(newUser, newPassword) =>{
     
 }
 
+const getUser = async(loginName, loginPassword) => {
+    try{
+        const { rows } = await client.query(`
+            SELECT * FROM users
+            WHERE username='${loginName}';
+            `);
+
+        const hashedPassword = rows[0].password;
+        
+        const isPasswordMatch = await bcrypt.compare(loginPassword, hashedPassword);
+        console.log(isPasswordMatch);
+
+        // console.log(rows);
+    }catch(err){
+        console.log(err);
+    }
+}
+
 module.exports = {
-    createUser
+    createUser,
+    getUser
 }
